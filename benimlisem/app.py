@@ -17,8 +17,10 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('500.html'), 500
 
-#il********************************************************************************
-#il********************************************************************************
+@app.route("/video/video")
+def videolink():
+    return render_template('videolink.html')
+
 #il********************************************************************************
 @app.route("/il")
 def ilk_il():
@@ -29,8 +31,8 @@ def ilk_il():
     
                     
         return render_template("il_secme.html",data=data,data_len=len(data))
-#il********************************************************************************
-#il********************************************************************************
+    
+
 #il********************************************************************************
 @app.route("/il/<string:il>")
 def il(il):
@@ -53,8 +55,6 @@ def il(il):
         return render_template("ilce_secme.html",url_il=url_il,il=il,data=data,data_len=len(data))
                 
                                                                   
-#ilçe********************************************************************************
-#ilçe********************************************************************************
 #ilçe********************************************************************************
 
 @app.route("/il/<string:il>/<string:ilce>")
@@ -84,8 +84,16 @@ def ilce(il,ilce):
         return render_template("okul_secme.html",url_il=url_il,url_ilce=url_ilce ,il_ad=il_ad,ilce_ad=ilce_ad,data3=data3,data3_len=len(data3))
 
 #okul********************************************************************************
-#okul********************************************************************************
-#okul********************************************************************************
+
+def ayar_func(data_num,result_num,hangisi):
+    for t in data_num:
+        a=str(t[4])
+        a = a.replace("[", "")
+        a = a.replace("]", "")
+        a = a.replace("'", "")
+        result_num.append(a)
+        hangisi+=t[6]
+        hangisi+=t[7]
 
 @app.route("/il/<string:il>/<string:ilce>/<string:lise_ad>/2021")
 def okul_ad_2021(il,ilce,lise_ad):
@@ -128,7 +136,6 @@ def okul_ad_2021(il,ilce,lise_ad):
         url_ilce=ilce
         url_il=il
 
-
         result1 = []
         result2 = []
         result3 = []
@@ -141,51 +148,11 @@ def okul_ad_2021(il,ilce,lise_ad):
         toplam_dil=0
         toplam_onlisans=0
 
-        for t in data4:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result1.append(a)
-            toplam_sayisal+=t[6]
-            toplam_sayisal+=t[7]
-
-        for t in data5:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result2.append(a)
-            toplam_esit+=t[6]
-            toplam_esit+=t[7]
-
-        for t in data6:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result3.append(a)
-            toplam_sozel+=t[6]
-            toplam_sozel+=t[7]
-
-        for t in data7:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result4.append(a)
-            toplam_dil+=t[6]
-            toplam_dil+=t[7]
-
-        for t in data8:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result5.append(a)
-            toplam_onlisans+=t[6]
-            toplam_onlisans+=t[7]
-        
+        ayar_func(data4,result1,toplam_sayisal)
+        ayar_func(data5,result2,toplam_esit)
+        ayar_func(data6,result3,toplam_sozel)
+        ayar_func(data7,result4,toplam_dil)
+        ayar_func(data8,result5,toplam_onlisans)
         
         return render_template("son.html",toplam_sayisal=toplam_sayisal,toplam_esit=toplam_esit,toplam_sozel=toplam_sozel,toplam_dil=toplam_dil,toplam_onlisans=toplam_onlisans,url_ilce=url_ilce,url_il=url_il,il_ad=il_ad,ilce_ad=ilce_ad,lise_ad=lise_ad,okul_ad=okul_ad,result1=result1,result2=result2,result3=result3,result4=result4,result5=result5, yil="2021",data4=data4,len4=len(data4), data5=data5,len5=len(data5), data6=data6,len6=len(data6), data7=data7,len7=len(data7), data8=data8,len8=len(data8))
 
@@ -210,7 +177,6 @@ def okul_ad_2020(il,ilce,lise_ad):
         data3 = cursor1.fetchall()  
         okul_id=data3[0][0]
         okul_ad=data3[0][1]
-
 
 
         cursor1.execute("SELECT uni_adi,uni_bolum,uni_etiket,uni_fakulte,uni_2020_siralama,uni_2020_puan,yeni_mezun,onceki_mezun FROM sayisal_2020 WHERE okul_id=  ?",(okul_id,))
@@ -247,52 +213,11 @@ def okul_ad_2020(il,ilce,lise_ad):
         toplam_dil=0
         toplam_onlisans=0
 
-        for t in data4:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result1.append(a)
-            toplam_sayisal+=t[6]
-            toplam_sayisal+=t[7]
-
-        for t in data5:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result2.append(a)
-            toplam_esit+=t[6]
-            toplam_esit+=t[7]
-
-        for t in data6:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result3.append(a)
-            toplam_sozel+=t[6]
-            toplam_sozel+=t[7]
-
-        for t in data7:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result4.append(a)
-            toplam_dil+=t[6]
-            toplam_dil+=t[7]
-
-        for t in data8:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result5.append(a)
-            toplam_onlisans+=t[6]
-            toplam_onlisans+=t[7]
-
-        
+        ayar_func(data4,result1,toplam_sayisal)
+        ayar_func(data5,result2,toplam_esit)
+        ayar_func(data6,result3,toplam_sozel)
+        ayar_func(data7,result4,toplam_dil)
+        ayar_func(data8,result5,toplam_onlisans)
         
         
         return render_template("son.html",toplam_sayisal=toplam_sayisal,toplam_esit=toplam_esit,toplam_sozel=toplam_sozel,toplam_dil=toplam_dil,toplam_onlisans=toplam_onlisans,url_ilce=url_ilce,url_il=url_il,il_ad=il_ad,ilce_ad=ilce_ad,lise_ad=lise_ad,okul_ad=okul_ad,result1=result1,result2=result2,result3=result3,result4=result4,result5=result5, yil="2020",data4=data4,len4=len(data4), data5=data5,len5=len(data5), data6=data6,len6=len(data6), data7=data7,len7=len(data7), data8=data8,len8=len(data8))
@@ -316,8 +241,6 @@ def okul_ad_2019(il,ilce,lise_ad):
         data3 = cursor1.fetchall()  
         okul_id=data3[0][0]
         okul_ad=data3[0][1]
-
-
 
         cursor1.execute("SELECT uni_adi,uni_bolum,uni_etiket,uni_fakulte,uni_2019_siralama,uni_2019_puan,yeni_mezun,onceki_mezun FROM sayisal_2019 WHERE okul_id=  ?",(okul_id,))
         data4 = cursor1.fetchall()
@@ -353,50 +276,11 @@ def okul_ad_2019(il,ilce,lise_ad):
         toplam_dil=0
         toplam_onlisans=0
 
-        for t in data4:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result1.append(a)
-            toplam_sayisal+=t[6]
-            toplam_sayisal+=t[7]
-
-        for t in data5:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result2.append(a)
-            toplam_esit+=t[6]
-            toplam_esit+=t[7]
-
-        for t in data6:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result3.append(a)
-            toplam_sozel+=t[6]
-            toplam_sozel+=t[7]
-
-        for t in data7:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result4.append(a)
-            toplam_dil+=t[6]
-            toplam_dil+=t[7]
-
-        for t in data8:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result5.append(a)
-            toplam_onlisans+=t[6]
-            toplam_onlisans+=t[7]
+        ayar_func(data4,result1,toplam_sayisal)
+        ayar_func(data5,result2,toplam_esit)
+        ayar_func(data6,result3,toplam_sozel)
+        ayar_func(data7,result4,toplam_dil)
+        ayar_func(data8,result5,toplam_onlisans)
         
         
         return render_template("son.html",toplam_sayisal=toplam_sayisal,toplam_esit=toplam_esit,toplam_sozel=toplam_sozel,toplam_dil=toplam_dil,toplam_onlisans=toplam_onlisans,url_ilce=url_ilce,url_il=url_il,il_ad=il_ad,ilce_ad=ilce_ad,lise_ad=lise_ad,okul_ad=okul_ad,result1=result1,result2=result2,result3=result3,result4=result4,result5=result5, yil="2019",data4=data4,len4=len(data4), data5=data5,len5=len(data5), data6=data6,len6=len(data6), data7=data7,len7=len(data7), data8=data8,len8=len(data8))
@@ -420,8 +304,6 @@ def okul_ad_2018(il,ilce,lise_ad):
         data3 = cursor1.fetchall()  
         okul_id=data3[0][0]
         okul_ad=data3[0][1]
-
-
 
         cursor1.execute("SELECT uni_adi,uni_bolum,uni_etiket,uni_fakulte,uni_2018_siralama,uni_2018_puan,yeni_mezun,onceki_mezun FROM sayisal_2018 WHERE okul_id=  ?",(okul_id,))
         data4 = cursor1.fetchall()
@@ -457,56 +339,15 @@ def okul_ad_2018(il,ilce,lise_ad):
         toplam_dil=0
         toplam_onlisans=0
 
-        for t in data4:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result1.append(a)
-            toplam_sayisal+=t[6]
-            toplam_sayisal+=t[7]
-
-        for t in data5:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result2.append(a)
-            toplam_esit+=t[6]
-            toplam_esit+=t[7]
-
-        for t in data6:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result3.append(a)
-            toplam_sozel+=t[6]
-            toplam_sozel+=t[7]
-
-        for t in data7:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result4.append(a)
-            toplam_dil+=t[6]
-            toplam_dil+=t[7]
-
-        for t in data8:
-            a=str(t[4])
-            a = a.replace("[", "")
-            a = a.replace("]", "")
-            a = a.replace("'", "")
-            result5.append(a)
-            toplam_onlisans+=t[6]
-            toplam_onlisans+=t[7]
+        ayar_func(data4,result1,toplam_sayisal)
+        ayar_func(data5,result2,toplam_esit)
+        ayar_func(data6,result3,toplam_sozel)
+        ayar_func(data7,result4,toplam_dil)
+        ayar_func(data8,result5,toplam_onlisans)
         
         return render_template("son.html",toplam_sayisal=toplam_sayisal,toplam_esit=toplam_esit,toplam_sozel=toplam_sozel,toplam_dil=toplam_dil,toplam_onlisans=toplam_onlisans,url_ilce=url_ilce,url_il=url_il,il_ad=il_ad,ilce_ad=ilce_ad,lise_ad=lise_ad,okul_ad=okul_ad,result1=result1,result2=result2,result3=result3,result4=result4,result5=result5, yil="2018",data4=data4,len4=len(data4), data5=data5,len5=len(data5), data6=data6,len6=len(data6), data7=data7,len7=len(data7), data8=data8,len8=len(data8))
 
 
-#il********************************************************************************
-#il********************************************************************************
 #il********************************************************************************
 @app.route("/secenek")
 def secenek():
@@ -593,4 +434,4 @@ def ilce_felan(il,ilce):
 
 
 if __name__ == "__main__":
-    app.run(debug=True) 
+    app.run(debug=False) 

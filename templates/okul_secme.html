@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="{{il}} ilindeki okulların yıllara göre üniversite sınav sonucu yerleştirdikleri öğrenci listesi"
+      content="{{il_ad}}-{{ilce_ad}} ilçesindeki okulların yıllara göre üniversite sınav sonucu yerleştirdikleri öğrenci listesi"
     />
-    <title>{{il}} ilinin ilçe seçim ekranı</title>
+    <title>{{il_ad}}-{{ilce_ad}} İlçesindeki Okulların Listesi</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link
@@ -41,6 +41,7 @@
       th {
         color: #a3d1cc;
       }
+
       .copyright {
         padding-top: 2.4rem;
         padding-bottom: 2.4rem;
@@ -101,9 +102,9 @@
     <div class="container">
       <h1 style="text-align: center">benimlisem.com</h1>
       <hr />
-      <h2 style="text-align: center">{{il}}</h2>
+      <h2 style="text-align: center">{{il_ad}}-{{ilce_ad}}</h2>
       <hr />
-      <h3 style="text-align: center">İlçe Seçim Ekranı</h3>
+      <h3 style="text-align: center">Araştırmak istediğiniz liseyi seçiniz</h3>
       <br /><br />
       <div style="text-align: center">
         <input
@@ -118,19 +119,19 @@
       <div class="table-responsive">
         <table class="table table-bordered" id="employee_table">
           <tr>
-            <th>İlçe İsimleri</th>
+            <th>Okul İsimleri</th>
           </tr>
 
-          {%for i in range(0, data_len)%}
+          {%for i in range(0, data3_len)%}
 
           <tr>
             <td>
               <a
-                href="{{url_il}}/{{data[i][1]}}"
+                href="{{url_ilce}}/{{data3[i][1]}}/2022"
                 class="
                   list-group-item list-group-item-action list-group-item-primary
                 "
-                >{{data[i][0]}}</a
+                >{{data3[i][0]}}</a
               >
             </td>
           </tr>
@@ -139,16 +140,10 @@
         </table>
       </div>
     </div>
-    <a href="https://sehitadilbcaihl.meb.k12.tr/" target="_blank"
-      ><img
-        src="{{url_for('static', filename='tercih_afis_3.jpeg')}}"
-        alt="Şehit Adil Büyükcengiz Kız Anadolu İmam Hatip Lisesi"
-        style="width: 100%"
-        href="https://sehitadilbcaihl.meb.k12.tr/"
-    /></a>
+
     <hr />
     <div class="copyright">
-      <small> © 2022 - benimlisem.com - Bütün hakları saklıdır. </small>
+      <small> © 2024 - benimlisem.com - Bütün hakları saklıdır. </small>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.1.1.slim.min.js"

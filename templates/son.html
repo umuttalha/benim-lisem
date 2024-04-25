@@ -144,7 +144,21 @@
                      <input type="text" name="search" id="search" class="form-control" placeholder="Ara"/>  
                 </div>  
                 <br /><br />  
+
+
+                {% if yil=="2022" %}
+                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2022" class="btn btn-success active" role="button" aria-pressed="true">2022</a>
+                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2021" class="btn btn-info active" role="button" aria-pressed="true">2021</a>
+                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2020" class="btn btn-info active" role="button" aria-pressed="true">2020</a>
+                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2019" class="btn btn-info active" role="button" aria-pressed="true">2019</a>
+                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2018" class="btn btn-info active" role="button" aria-pressed="true">2018</a>
+                 
+                {% endif %}
+
+
+
                 {% if yil=="2021" %}
+                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2022" class="btn btn-info active" role="button" aria-pressed="true">2022</a>
                 <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2021" class="btn btn-success active" role="button" aria-pressed="true">2021</a>
                 <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2020" class="btn btn-info active" role="button" aria-pressed="true">2020</a>
                 <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2019" class="btn btn-info active" role="button" aria-pressed="true">2019</a>
@@ -153,6 +167,7 @@
                 {% endif %}
 
                {% if yil=="2020" %}
+               <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2022" class="btn btn-info active" role="button" aria-pressed="true">2022</a>
                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2021" class="btn btn-info active" role="button" aria-pressed="true">2021</a>
                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2020" class="btn btn-success active" role="button" aria-pressed="true">2020</a>
                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2019" class="btn btn-info active" role="button" aria-pressed="true">2019</a>
@@ -160,6 +175,7 @@
                 
                {% endif %}
                {% if yil=="2019" %}
+               <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2022" class="btn btn-info active" role="button" aria-pressed="true">2022</a>
                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2021" class="btn btn-info active" role="button" aria-pressed="true">2021</a>
                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2020" class="btn btn-info active" role="button" aria-pressed="true">2020</a>
                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2019" class="btn btn-success active" role="button" aria-pressed="true">2019</a>
@@ -167,6 +183,7 @@
                 
                {% endif %}
                {% if yil=="2018" %}
+               <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2022" class="btn btn-info active" role="button" aria-pressed="true">2022</a>
                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2021" class="btn btn-info active" role="button" aria-pressed="true">2021</a>
                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2020" class="btn btn-info active" role="button" aria-pressed="true">2020</a>
                <a href="/il/{{url_il}}/{{url_ilce}}/{{lise_ad}}/2019" class="btn btn-info active" role="button" aria-pressed="true">2019</a>
@@ -181,7 +198,7 @@
                <h2 style="color:#003b9b;" class="font-weight-bold">Sayısal</h2>
 
                 <br>
-                <h4>{{yil}} senesinde {{toplam_sayisal}} kişi sayısal alanından üniversiteye yerleşmiştir</h4>
+                <h4>{{yil}} senesinde {{len4}} kişi sayısal alanından üniversiteye yerleşmiştir</h4>
                 <div class="table" id="table">  
                      <table class="table" id="employee_table">  
                           <tr class="row m-2"> 
@@ -225,7 +242,7 @@
                <br>
                <h2 style="color:#003b9b;" class="font-weight-bold">Eşit Ağırlık</h2>
                <br>
-               <h4>{{yil}} senesinde {{toplam_esit}} kişi eşit ağırlık alanından üniversiteye yerleşmiştir</h4>
+               <h4>{{yil}} senesinde {{len5}} kişi eşit ağırlık alanından üniversiteye yerleşmiştir</h4>
                <div class="table" id="table">  
                      <table class="table" id="employee_table">  
                           <tr class="row m-2"> 
@@ -267,7 +284,7 @@
                <br>
                <h2 style="color:#003b9b;" class="font-weight-bold">Sözel</h2>
                <br>
-               <h4>{{yil}} senesinde {{toplam_sozel}} kişi sözel alanından üniversiteye yerleşmiştir</h4>
+               <h4>{{yil}} senesinde {{len6}} kişi sözel alanından üniversiteye yerleşmiştir</h4>
                <div class="table" id="table">  
                      <table class="table" id="employee_table">  
                           <tr class="row m-2"> 
@@ -309,7 +326,7 @@
                <br>
                <h2 style="color:#003b9b;" class="font-weight-bold">Dil</h2>
                <br>
-               <h4>{{yil}} senesinde {{toplam_dil}} kişi dil alanından üniversiteye yerleşmiştir</h4>
+               <h4>{{yil}} senesinde {{len7}} kişi dil alanından üniversiteye yerleşmiştir</h4>
                <div class="table" id="table">  
                      <table class="table" id="employee_table">  
                           <tr class="row m-2"> 
@@ -352,7 +369,7 @@
                <br>
                <h2 style="color:#003b9b;" class="font-weight-bold">Önlisans (2 Yıllık)</h2>
                <br>
-               <h4>{{yil}} senesinde {{toplam_onlisans}} kişi önlisans (2 Yıllık) alanından üniversiteye yerleşmiştir</h4>
+               <h4>{{yil}} senesinde {{len8}} kişi önlisans (2 Yıllık) alanından üniversiteye yerleşmiştir</h4>
                <div class="table" id="table">  
                      <table class="table" id="employee_table">  
                           <tr class="row m-2"> 
@@ -396,7 +413,7 @@
                <div class="copyright">
 
                <small>
-                    © 2022 - benimlisem.com - Bütün hakları saklıdır.
+                    © 2024 - benimlisem.com - Bütün hakları saklıdır.
 
                </small>
           </div>

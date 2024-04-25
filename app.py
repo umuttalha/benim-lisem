@@ -10,16 +10,13 @@ def index():
     return render_template("anasayfa.html")
 
 @app.errorhandler(404)
-def page_not_found(e):
+def page_not_found():
     return render_template('404.html'), 404
 
 @app.errorhandler(500)
-def page_not_found(e):
+def page_not_found():
     return render_template('500.html'), 500
 
-@app.route("/video/video")
-def videolink():
-    return render_template('videolink.html')
 
 #il********************************************************************************
 @app.route("/il")
@@ -94,6 +91,72 @@ def ayar_func(data_num,result_num,hangisi):
         result_num.append(a)
         hangisi+=t[6]
         hangisi+=t[7]
+
+
+@app.route("/il/<string:il>/<string:ilce>/<string:lise_ad>/2022")
+def okul_ad_2022(il,ilce,lise_ad):
+    with sqlite3.connect("database.db") as con1:
+        cursor1 = con1.cursor()
+
+        cursor1.execute("SELECT il_id,il_ad FROM il_tablo_alfabetik WHERE il_url=  ?",(il,))
+        data1 = cursor1.fetchall()
+        il_id=data1[0][0]
+        il_ad=data1[0][1]
+
+        cursor1.execute("SELECT ilce_id,ilce_ad FROM ilce_tablo WHERE ilce_url=  ? AND il_id=  ?",(ilce,il_id,))
+        data2 = cursor1.fetchall()
+        ilce_id=data2[0][0]
+        ilce_ad=data2[0][1]
+
+        cursor1.execute("SELECT okul_id,okul_ad FROM okul_tablo WHERE okul_url= ? AND ilce_id=  ? AND il_id=  ?",(lise_ad,ilce_id,il_id,))
+        data3 = cursor1.fetchall()  
+        okul_id=data3[0][0]
+        okul_ad=data3[0][1]
+
+        cursor1.execute("SELECT uni_adi,uni_bolum,uni_etiket,uni_fakülte,uni_2022_siralama,uni_2022_puan,yeni_mezun,onceki_mezun FROM sayisal_2022 WHERE okul_adi=  ?",(okul_id,))
+        data4 = cursor1.fetchall()
+
+        cursor1.execute("SELECT uni_adi,uni_bolum,uni_etiket,uni_fakülte,uni_2022_siralama,uni_2022_puan,yeni_mezun,onceki_mezun FROM esit_2022 WHERE okul_adi=  ?",(okul_id,))
+        data5 = cursor1.fetchall()
+
+        cursor1.execute("SELECT uni_adi,uni_bolum,uni_etiket,uni_fakülte,uni_2022_siralama,uni_2022_puan,yeni_mezun,onceki_mezun FROM sozel_2022 WHERE okul_adi=  ?",(okul_id,))
+        data6 = cursor1.fetchall()
+
+        cursor1.execute("SELECT uni_adi,uni_bolum,uni_etiket,uni_fakülte,uni_2022_siralama,uni_2022_puan,yeni_mezun,onceki_mezun FROM dil_2022 WHERE okul_adi=  ?",(okul_id,))
+        data7 = cursor1.fetchall()
+
+        cursor1.execute("SELECT uni_adi,uni_bolum,uni_etiket,uni_fakülte,uni_2022_siralama,uni_2022_puan,yeni_mezun,onceki_mezun FROM onlisans_2022 WHERE okul_adi=  ?",(okul_id,))
+        data8 = cursor1.fetchall()
+    
+
+####################################################################################################################################################################################################
+
+        url_ilce=ilce
+        url_il=il
+
+        result1 = []
+        result2 = []
+        result3 = []
+        result4 = []
+        result5 = []
+
+        toplam_sayisal=0
+        toplam_esit=0
+        toplam_sozel=0
+        toplam_dil=0
+        toplam_onlisans=0
+
+        ayar_func(data4,result1,toplam_sayisal)
+        ayar_func(data5,result2,toplam_esit)
+        ayar_func(data6,result3,toplam_sozel)
+        ayar_func(data7,result4,toplam_dil)
+        ayar_func(data8,result5,toplam_onlisans)
+
+        print(len(data4))
+        
+        return render_template("son.html",toplam_sayisal=toplam_sayisal,toplam_esit=toplam_esit,toplam_sozel=toplam_sozel,toplam_dil=toplam_dil,toplam_onlisans=toplam_onlisans,url_ilce=url_ilce,url_il=url_il,il_ad=il_ad,ilce_ad=ilce_ad,lise_ad=lise_ad,okul_ad=okul_ad,result1=result1,result2=result2,result3=result3,result4=result4,result5=result5, yil="2022",data4=data4,len4=len(data4), data5=data5,len5=len(data5), data6=data6,len6=len(data6), data7=data7,len7=len(data7), data8=data8,len8=len(data8))
+
+
 
 @app.route("/il/<string:il>/<string:ilce>/<string:lise_ad>/2021")
 def okul_ad_2021(il,ilce,lise_ad):

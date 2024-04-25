@@ -3,8 +3,8 @@
       <head>  
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          <meta name="description" content="Liselerin yıllara göre üniversite sınav sonucu yerleştirdikleri öğrenci listesi">
-          <title>Benim Lisem | İl Seçim Ekranı</title>  
+          <meta name="description" content="İl veya ilçelerin alanlara göre yerleştirdikleri kişi sayısı">
+          <title>Benim Lisem | Seçenekler</title>  
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
           <link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -13,7 +13,6 @@
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
           <link rel="shortcut icon" href="{{ url_for('static', filename='web_site_kafa.png') }}">
-          
           <style>
           body{
                background-color:#f2f2f2;
@@ -24,7 +23,6 @@
           th{
                color:#A3D1CC;
           }
-          
           .copyright {
 
             padding-top: 2.4rem;
@@ -49,6 +47,52 @@
           color: #a3d1cc; 
           background-color: #a3d1cc; 
           }
+         
+          @media (min-width:1200px){
+
+               #yazı {
+               font-size: 40px;
+               padding-top:80px;
+               padding-bottom:80px;
+          }
+            
+          }
+
+          @media (max-width:1200px){
+
+              #yazı {
+               font-size: 30px;
+               margin-top:60px;
+               margin-bottom:60px;
+          }
+            
+          }
+          @media screen and (max-width: 992px){
+              
+               #yazı {
+               font-size: 25px;
+               margin-top:50px;
+               margin-bottom:50px;
+          }
+
+          }
+          @media screen and (max-width: 768px){
+               
+               #yazı {
+               font-size: 20px;
+               margin-top:40px;
+               margin-bottom:40px;
+          }
+          }
+          @media screen and (max-width: 576px){
+               
+              #yazı {
+               font-size: 14px;
+               margin-top:28px;
+               margin-bottom:28px;
+          }
+          }
+          
           
           </style>
           <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -68,36 +112,22 @@
             </div>
         
      </nav>
-           <br /><br />  <br> <br>
+           <br> <br> <br> <br>
            <div class="container">  
-                <h1 style="text-align:center;">benimlisem.com</h1>  
+                <h1 style="text-align:center;">Benim Lisem</h1>  
                 <h3 style="text-align:center;">Araştırmak istediğiniz ilin seçim ekranı</h3>                 
-                <br /><br />  
-                <div style="text-align:center;">  
-                     <input type="text" name="search" id="search" class="form-control" placeholder="Ara"/>  
-                </div>  
-                <br /><br />  
-                <div class="table-responsive">  
-                     <table class="table table-bordered" id="il_table">  
-                          <tr>     
-                               <th>İl İsimleri</th>  
-                          </tr>  
-                          
-                    {%for i in range(0, len1)%}
+                <br /><br />  <br>
 
-                        <tr>
-                            <td><a href="ilce_siralama_secme/{{data1[i][1]}}" class="list-group-item list-group-item-action list-group-item-primary">{{data1[i][0]}}</a></td>
-                        </tr>
+          <a href="/il_siralama_secme" class="btn btn-primary btn-xl btn-work btn-block ms-3" role="button" aria-pressed="true"><h3>İl Sıralamaları</h3></a>
+          <br><br>
+          <a href="/ilce_siralama_secme" class="btn btn-primary btn-xl btn-work btn-block ms-3" role="button" aria-pressed="true"><h3>İlçe Sıralamaları</h3></a>
 
-                    {% endfor %}                            
-                    </table>  
-                </div>  
            </div> 
-           <hr>
+           <br><br><br><br><br><br><br><br><br><br>  <hr>
            <div class="copyright">
 
                <small>
-                    © 2022 - benimlisem.com - Bütün hakları saklıdır.
+                    © 2024 - Benimlisem.com - Bütün hakları saklıdır.
 
                </small>
           </div>
@@ -106,36 +136,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> 
-    <script>  
-     $("input[type=text]").keyup(function(){
-     $(this).val( $(this).val().toLocaleUpperCase('TR') );
-     });
-
-      $(document).ready(function(){  
-           $('#search').keyup(function(){  
-                search_table($(this).val());  
-           });  
-           function search_table(value){  
-                $('#il_table tr').each(function(){  
-                     var found = 'false';  
-                     $(this).each(function(){  
-                          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
-                          {  
-                               found = 'true';  
-                          }  
-                     });  
-                     if(found == 'true')  
-                     {  
-                          $(this).show();  
-                     }  
-                     else  
-                     {  
-                          $(this).hide();  
-                     }  
-                });  
-           }  
-      });  
-     </script>  
-     </body>  
+    </body>  
  </html>  
- 

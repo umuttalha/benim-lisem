@@ -1,18 +1,19 @@
 <!DOCTYPE html>  
  <html lang="tr">  
-      <head> 
+      <head>  
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          <meta name="description" content="{{il_ad}} ilindeki ilçelerin yıllara göre üniversite sınav sonucu yerleştirdikleri öğrenci sayısı"> 
-           <title>Benim Lisem | İlçe Seçim Ekranı</title>  
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>   
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-           <link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+          <meta name="description" content="Liselerin yıllara göre üniversite sınav sonucu yerleştirdikleri öğrenci sayısı">
+          <title>Benim Lisem | Alana Göre İl Seçim Ekranı</title>  
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+          <link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
           <link rel="shortcut icon" href="{{ url_for('static', filename='web_site_kafa.png') }}">
+          
           <style>
           body{
                background-color:#f2f2f2;
@@ -23,6 +24,7 @@
           th{
                color:#A3D1CC;
           }
+          
           .copyright {
 
             padding-top: 2.4rem;
@@ -47,6 +49,7 @@
           color: #a3d1cc; 
           background-color: #a3d1cc; 
           }
+          
           </style>
           <!-- Global site tag (gtag.js) - Google Analytics -->
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJJ1P6L694"></script>
@@ -59,43 +62,42 @@
           <script data-ad-client="ca-pub-7911477799775038" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       </head>  
       <body>  
-       <nav>
-          <div>      
-               <a href="/" class="btn btn-info btn-lg active" role="button" aria-pressed="true">Anasayfa</a>
-          </div>
+      <nav>
+      <div>      
+                   <a href="/" class="btn btn-info btn-lg active" role="button" aria-pressed="true">Anasayfa</a>
+            </div>
         
      </nav>
-           <br/><br/><br> <br>
+           <br /><br />  <br> <br>
            <div class="container">  
                 <h1 style="text-align:center;">benimlisem.com</h1>  
-                <h2 style="text-align:center;">{{il_ad}}</h2>
-                <h3 style="text-align:center;">Araştırmak istediğiniz ilçenin seçim ekranı</h3>        
+                <h3 style="text-align:center;">Araştırmak istediğiniz ilin seçim ekranı</h3>                 
                 <br /><br />  
                 <div style="text-align:center;">  
                      <input type="text" name="search" id="search" class="form-control" placeholder="Ara"/>  
                 </div>  
                 <br /><br />  
-                <div class="table-responsive" >  
-                     <table class="table table-bordered" id="employee_table">  
+                <div class="table-responsive">  
+                     <table class="table table-bordered" id="il_table">  
                           <tr>     
-                               <th>İlçe İsimleri</th>  
+                               <th>İl İsimleri</th>  
                           </tr>  
                           
-                    {%for i in range(0, len2)%}
+                    {%for i in range(0, len1)%}
 
                         <tr>
-                            <td><a href="{{il_url}}/{{data2[i][1]}}" class="list-group-item list-group-item-action list-group-item-primary">{{data2[i][0]}}</a></td>
+                            <td><a href="il_siralama_secme/{{data1[i][1]}}" class="list-group-item list-group-item-action list-group-item-primary">{{data1[i][0]}}</a></td>
                         </tr>
 
                     {% endfor %}                            
                     </table>  
                 </div>  
-           </div>  
+           </div> 
            <hr>
            <div class="copyright">
 
                <small>
-                    © 2022 - benimlisem.com - Bütün hakları saklıdır.
+                    © 2024 - benimlisem.com - Bütün hakları saklıdır.
 
                </small>
           </div>
@@ -103,7 +105,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> 
      <script>  
      $("input[type=text]").keyup(function(){
      $(this).val( $(this).val().toLocaleUpperCase('TR') );
@@ -114,7 +116,7 @@
                 search_table($(this).val());  
            });  
            function search_table(value){  
-                $('#employee_table tr').each(function(){  
+                $('#il_table tr').each(function(){  
                      var found = 'false';  
                      $(this).each(function(){  
                           if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
@@ -133,7 +135,6 @@
                 });  
            }  
       });  
-      </script>  
-     </body>  
-      
+     </script>  
+      </body>  
  </html>  

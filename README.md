@@ -1,3 +1,3 @@
 # benim-lisem
 
-benimlisem.com websitesinin tüm kodları
+![Google analytic](benimlisem_analytic.png)
